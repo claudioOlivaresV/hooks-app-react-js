@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { todo } from "node:test";
 
 interface Todo {
   id: number;
@@ -18,19 +19,34 @@ export const TasksApp = () => {
   const [inputValue, setInputValue] = useState("");
 
   const addTodo = () => {
+    if (inputValue.trim().length === 0) return;
+
+    const newTodo: Todo = {
+      id: Date.now(),
+      text: inputValue.trim(),
+      completed: false,
+    };
+    if (todos) setTodos((prev) => [...prev, newTodo]);
+    setInputValue("");
     console.log("Agregar tarea", inputValue);
   };
 
   const toggleTodo = (id: number) => {
+    const updatedTodos = todos.map((todo) =>
+      todo.id === id ? { ...todo, completed: !todo.completed } : todo,
+    );
+    setTodos(updatedTodos);
     console.log("Cambiar de true a false", id);
   };
 
   const deleteTodo = (id: number) => {
+    const updatedTodos = todos.filter((todo) => todo.id !== id);
+    setTodos(updatedTodos);
     console.log("Eliminar tarea", id);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
-    console.log("Presiono enter");
+    if (e.key === "Enter") addTodo();
   };
 
   const completedCount = todos.filter((todo) => todo.completed).length;
