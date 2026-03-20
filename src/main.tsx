@@ -10,7 +10,8 @@ import "./index.css";
 // import { TasksApp } from "./useReducer/TasApp";
 // import { ScrambleWords } from "./useReducer/ScrambleWords";
 import { MemoHook } from "./memos/MemoHook";
-import { MemoCounter } from "./memos/MemoCounter";
+import { ProfesionalApp } from "./useContext/ProfesionalApp";
+// import { MemoCounter } from "./memos/MemoCounter";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -21,7 +22,8 @@ createRoot(document.getElementById("root")!).render(
     {/* <FocusScreen /> */}
     {/* <TasksApp /> */}
     {/* <ScrambleWords /> */}
-    <MemoHook />
+    {/* <MemoHook /> */}
     {/* <MemoCounter /> */}
+    <ProfesionalApp />
   </StrictMode>,
 );
